@@ -1,0 +1,34 @@
+/* ===== Accesibilidad y reducción de movimiento ===== */
+
+/* Foco visible en todos los enlaces y botones clave */
+a:focus-visible,
+.service-card__btn:focus-visible,
+.toggle_btn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(114,225,244,.6);
+  border-radius: 12px;
+  outline: 0;
+}
+
+/* Desactiva animaciones pesadas si el usuario prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .service-card__inner {
+    transition: none;
+    transform: none !important;
+  }
+  .service-card:hover .service-card__inner,
+  .service-card:focus-within .service-card__inner {
+    transform: none;
+  }
+  .service-card__btn,
+  .closing-cta__button {
+    animation: none !important;
+  }
+}
+
+.skip-link{
+  position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+}
+.skip-link:focus{
+  left:16px;top:16px;width:auto;height:auto;padding:.5rem 1rem;border-radius:8px;
+  background:#a58bdb;color:#fff;z-index:9999;outline:0;
+}

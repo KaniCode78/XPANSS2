@@ -1,0 +1,302 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root{
+  --fuentePrincipal:"Montserrat",sans-serif;
+  --surface-color:#fff;
+  --white:#ffffff;
+  --black:#000000;
+  --dark-color:#2f6c73;
+  --light-color:#e5edf5;
+  --curve:40;
+  --primary-color:#a58bdb;
+  --secondary-color:#72e1f4;
+  --tertiary-color:#bad9d6;
+  --fondo1:rgba(18,202,239,0.5);
+}
+
+*,
+*::before,
+*::after{ box-sizing:border-box; }
+
+html{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family:var(--fuentePrincipal);
+}
+
+li{ list-style:none; }
+a{
+  text-decoration:none;
+  color:var(--secondary-color);
+  font-size:1.2rem;
+  font-weight:500;
+}
+
+/* --- HEADER / NAV --- */
+.contenedor_header{
+  min-height:100vh;
+  background-color:var(--primary-color);
+  background-image:url(../images/family-6398107_1920.jpg);
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center center;
+  overflow:hidden;
+  padding:0 2rem;
+  padding-top:.3rem;
+}
+
+.navbar{
+  height:60px;
+  max-width:120rem;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  text-align:center;
+}
+
+.navbar .logo img{ width:140px; height:100%; }
+
+.navbar .links{
+  display:flex;
+  gap:2rem;
+}
+
+.navbar a:hover{
+  border-bottom:2px solid #97a699;
+}
+
+.actionp_btn{
+  color:var(--secondary-color);
+  padding:.5rem 1rem;
+  border:none;
+  cursor:pointer;
+  border-radius:10px;
+  background:var(--primary-color);
+}
+
+/* Hamburguesa: oculta en desktop */
+.toggle_btn{
+  display:none;
+  cursor:pointer;
+  color:#2f6c73;
+  font-size:1.6rem;
+}
+
+/* --- DROPDOWN (único bloque, sin duplicados) --- */
+/* Base: oculto en desktop */
+.dropdown_menu{
+  display:none;
+  position:absolute;
+  right:1rem;
+  top:60px;                    /* debajo de la navbar */
+  width:min(94vw, 380px);
+  background:#ffffff;
+  box-shadow:0 12px 24px rgba(0,0,0,.12);
+  border-radius:12px;
+  padding:.5rem 0;
+  z-index:1000;                /* por encima del #hero */
+}
+
+.dropdown_menu ul{ margin:0; padding:0; }
+.dropdown_menu li{ list-style:none; }
+
+.dropdown_menu a{
+  display:block;
+  padding:14px 18px;
+  color:#2f6c73;
+  font-weight:600;
+}
+
+/* Estado abierto */
+.dropdown_menu.open{ display:block; }
+
+/* Evitar scroll del body cuando abre menú */
+body.no-scroll{ overflow:hidden; }
+
+/* --- HERO --- */
+#hero{
+  height:calc(100vh - 60px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:var(--white);
+  min-height:100vh;
+  padding:0 2rem;
+  position:relative; /* para z-index del overlay */
+}
+
+#hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  /* overlay oscuro (si lo usas, añade un background aquí) */
+}
+
+#hero-content{
+  position:relative;
+  z-index:2;
+  background:rgba(0,0,0,.40);
+  color:#fff;
+  border-radius:15px;
+  padding:1rem;
+}
+
+#hero h1{
+  font-size:2.5rem;
+  font-weight:300;
+  margin:0;
+  text-align:left;
+}
+
+#hero p{
+  font-size:1.5rem;
+  font-weight:400;
+  margin:0;
+  text-align:left;
+}
+
+/* CTA Hero */
+@keyframes pulse{
+  0%{ transform:scale(1); box-shadow:0 0 0 0 rgba(114,225,244,.7); }
+  70%{ transform:scale(1.05); box-shadow:0 0 0 10px rgba(114,225,244,0); }
+  100%{ transform:scale(1); box-shadow:0 0 0 0 rgba(114,225,244,0); }
+}
+#hero a{
+  background:linear-gradient(to right, rgba(114,225,244,.5), rgba(114,225,244,0));
+  padding:.5rem 1rem;
+  border-radius:12px;
+  border:rgba(250,248,248,.5) 2px solid;
+  color:var(--white);
+  font-size:1rem;
+  display:inline-block;
+  animation:pulse 2s infinite;
+  transition:transform .3s ease;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width:900px){
+  .navbar{
+    position:relative;      /* ancla para .dropdown_menu absolute */
+    padding:0 1rem;
+  }
+  .links,
+  .actionp_btn{ display:none; }  /* ocultar en móvil */
+  .toggle_btn{ display:block; }
+}
+
+/* --- FIX: ocultar menú desktop cuando aparece la hamburguesa --- */
+@media (max-width: 900px) {
+  .navbar { position: relative; z-index: 1100; } /* asegura que el header esté sobre el hero */
+  .navbar .links { display: none !important; }   /* más específico + !important por si hay conflictos */
+  .navbar .actionp_btn { display: none !important; }
+  .toggle_btn { display: block; }                /* muestra el ícono hamburguesa */
+}
+
+
+/* ====== DROPDOWN centrado + glassmorphism + animación ====== */
+.dropdown_menu{
+  /* Centrado horizontal del panel */
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: min(92vw, 560px);
+
+  /* Glassmorphism */
+  background: rgba(255,255,255,0.35);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  border-radius: 18px;
+
+  /* Animación de entrada */
+  opacity: 0;
+  translate: 0 -10px;
+  transition: opacity .25s ease, translate .25s ease;
+}
+
+.dropdown_menu.open{
+  display: block;
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Contenido centrado */
+.dropdown_menu ul{
+  margin: 0;
+  padding: 10px 8px 14px;
+}
+.dropdown_menu li{ list-style: none; }
+
+.dropdown_menu a{
+  display: block;
+  text-align: center;          /* centra el texto */
+  font-weight: 700;
+  letter-spacing: .2px;
+  padding: 18px 20px;          /* más aire */
+  color: #2f6c73;
+}
+
+/* Espaciado visual entre items */
+.dropdown_menu li + li a{
+  margin-top: 4px;
+  border-radius: 12px;
+}
+
+/* Hover agradable en items */
+.dropdown_menu a:not(.actionp_btn):hover{
+  background: rgba(255,255,255,0.55);
+}
+
+/* ====== Botón “Descargar E-Book” igual que “¡Hablemos!” ====== */
+/* Tomamos el estilo del CTA del hero y lo aplicamos aquí */
+.dropdown_menu .actionp_btn{
+  background: linear-gradient(to right, rgba(114,225,244,.5), rgba(114,225,244,0));
+  padding: .65rem 1.1rem;
+  border-radius: 12px;
+  border: rgba(250,248,248,.5) 2px solid;
+  color: var(--secondary-color);
+  font-size: 1rem;
+  display: inline-block;
+  animation: pulse 2s infinite;   /* usa el @keyframes pulse ya definido */
+  transition: transform .3s ease;
+  width: auto;                    /* no llenar todo el ancho */
+  margin: 10px auto 6px;          /* centrado */
+}
+
+/* Asegurar contraste del texto normal dentro del panel translúcido */
+.dropdown_menu a,
+.dropdown_menu a:visited{
+  color: #184b50;
+}
+
+/* Responsive: en móvil mantenemos el centrado y el ícono visible */
+@media (max-width: 900px){
+  .navbar { position: relative; z-index: 1100; }
+  .navbar .links { display: none !important; }
+  .navbar .actionp_btn { display: none !important; }
+  .toggle_btn { display: block; }
+
+  /* Panel un poco más ancho en móvil grande */
+  .dropdown_menu{ width: min(94vw, 600px); }
+}
+
+/* === Centrar perfectamente el CTA dentro del dropdown === */
+.dropdown_menu li{
+  display: flex;               /* el <li> se vuelve contenedor */
+  justify-content: center;     /* centrado horizontal del <a> */
+}
+
+.dropdown_menu a{
+  width: fit-content;          /* el ancho se ajusta al contenido */
+}
+
+/* Botón "Descargar E-Book" con el mismo estilo del héroe y centrado */
+.dropdown_menu .actionp_btn{
+  display: inline-block;       /* tamaño al contenido */
+  margin: 12px auto 10px;      /* centrado con auto */
+}
