@@ -31,7 +31,7 @@ body{
 li{ list-style:none; }
 a{
   text-decoration:none;
-  color:var(--secondary-color);
+  
   font-size:1.2rem;
   font-weight:500;
 }
@@ -67,23 +67,23 @@ a{
 }
 
 .navbar a:hover{
-  border-bottom:2px solid #97a699;
+  border-bottom:2px solid var(--secondary-color);
 }
 
 .actionp_btn{
-  color:var(--secondary-color);
+  color:var(--dark-color);
   padding:.5rem 1rem;
   border:none;
   cursor:pointer;
   border-radius:10px;
-  background:var(--primary-color);
+  background:var(--white);
 }
 
 /* Hamburguesa: oculta en desktop */
 .toggle_btn{
   display:none;
   cursor:pointer;
-  color:#2f6c73;
+  color:var(--white);
   font-size:1.6rem;
 }
 
