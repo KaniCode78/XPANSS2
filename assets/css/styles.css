@@ -1,17 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap');
 
 :root{
-  --fuentePrincipal:"Montserrat",sans-serif;
+  --fuentePrincipal:"Quicksand", sans-serif;
   --surface-color:#fff;
   --white:#ffffff;
   --black:#000000;
-  --dark-color:#2f6c73;
-  --light-color:#e5edf5;
+  /* --dark-color:#2f6c73;
+  --light-color:#e5edf5; */
   --curve:40;
-  --primary-color:#a58bdb;
-  --secondary-color:#72e1f4;
-  --tertiary-color:#bad9d6;
+  --primary-color:#00b5e2;
+  --secondary-color:#EFBE7D;
+  --tertiary-color:#FF5C39;
+  --quaternary-color:#0057b8;
   --fondo1:rgba(18,202,239,0.5);
+
+
+
 }
 
 *,
@@ -36,7 +40,7 @@ a{
 .contenedor_header{
   min-height:100vh;
   background-color:var(--primary-color);
-  background-image:url(../images/family-6398107_1920.jpg);
+  background-image:url(../images/pexels-jibarofoto-2833037.jpg);
   background-size:cover;
   background-repeat:no-repeat;
   background-position:center center;
@@ -299,4 +303,17 @@ body.no-scroll{ overflow:hidden; }
 .dropdown_menu .actionp_btn{
   display: inline-block;       /* tamaño al contenido */
   margin: 12px auto 10px;      /* centrado con auto */
+}
+
+@media (max-width: 900px) {
+  .toggle_btn {
+    display: block !important;
+    z-index: 1200;
+    position: relative;
+  }
+
+  .toggle_btn i {
+    color: #ffffff;
+    font-size: 1.8rem;
+  }
 }
